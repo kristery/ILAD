@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Learning Generalizable Dexterous Manipulation from Human Grasp Affordance.">
+  <!-- <meta name="keywords" content="Novel View Synthesis, Video Synthesis"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ILAD</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+
+  </script> -->
+  <style>
+  .hr {width: 100%; height: 1px; margin: 48px 0; background-color: #d6dbdf;}
+  </style>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" type="image/png" href="static/images/UCSD_icon.png"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+
+  <script type="text/javascript" async
+  		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+	<script type="text/javascript">
+		function toggle(id) {
+			var e = document.getElementById(id);
+			if(e.style.display == 'block')
+				e.style.display = 'none';
+			else
+				e.style.display = 'block';
+		}
+	</script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Learning Generalizable Dexterous Manipulation from Human Grasp Affordance</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://kristery.github.io/">Yueh-Hua Wu*</a>,</span>
+            <span class="author-block">
+              <a href="https://jiashunwang.github.io/">Jiashun Wang*</a>,</span>
+            <span class="author-block">
+              <a href="https://xiaolonw.github.io/">Xiaolong Wang</a>
+            <span class="author-block"></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">UC San Diego</span>
+          </div>
+
+          
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+  <div align="center">
+  <video autoplay loop muted playsinline controls width="60%">
+    <source src="./static/videos/video_introduction.mp4" type="video/mp4">
+  </video>
+</div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Dexterous manipulation with a multi-finger hand is one of the most challenging problems in robotics. While recent progress in imitation learning has largely improved the sample efficiency compared to Reinforcement Learning, the learned policy can hardly generalize to manipulate novel objects, given limited expert demonstrations. In this paper, we propose to learn dexterous manipulation using large-scale demonstrations with diverse 3D objects in a category, which are generated from a human grasp affordance model. This generalizes the policy to novel object instances within the same category. To train the policy, we propose a novel imitation learning objective jointly with a geometric representation learning objective using our demonstrations. By experimenting with relocating diverse objects in simulation, we show that our approach outperforms baselines with a large margin when manipulating novel objects. We also ablate the importance on 3D object representation learning for manipulation. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+</div>
+</section>
+
+<section class="section">
+
+  <div class="container">
+    
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="column is-two-thirds">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            We leverage a state-of-the-art affordance model GraspCVAE to generate diverse grasps on diverse objects within the same category. With the generated grasps, we utilize motion planning to obtain trajectories to reach these grasps. While these trajectories do not show how to perform a particular task, they can serve as partial demonstrations for guiding our policy to achieve the right contacts in grasping.   
+          </p>
+          <div align="center">
+          <video autoplay loop muted playsinline controls width="80%">
+            <source src="./static/videos/cem.mp4" type="video/mp4">
+          </video>
+          </div>
+          <p>
+            We propose a novel imitation learning objective to learn the policy with the affordance demonstrations. As we utilize a PointNet encoder to extract the 3D object shape information, we propose a 3D geometric representation learning approach jointly with imitation learning.   
+          </p>
+          <div align="center">
+
+          
+          <video autoplay loop muted playsinline controls width="80%">
+            <source src="./static/videos/learning.mp4" type="video/mp4">
+          </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--/ Look closer. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="hr"></div>
+    <!-- Comparsion -->
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
+      <div class="column is-full-width">
+        <h2 class="title is-3">Visualizations of Demonstrations</h2>
+          <p style="text-align: center;">
+          We show the visualization of our demonstrations. Top left corner shows the target human grasp.
+          </p>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/demos_bottle.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+            
+            
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/demos_camera.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/demos_can.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/demos_remote.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/demos_mug.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+            
+      </div>
+    </div>
+    <!-- Comparsion -->
+
+    <div class="hr"></div>
+
+    <!-- Comparsion -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison to DAPG on unseen objects</h2>
+          <p style="text-align: center;">
+          We compare our method to DAPG on relocating different unseen objects. Green object is the target.
+          </p>
+            
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/result_bottle.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/result_camera.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/result_can.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/result_remote.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+            <div style="padding: 12px;"></div>
+            <div class="columns is-centered">              
+                <video id="dollyzoom" autoplay playsinline controls muted loop width="100%">
+                  <source src="static/videos/result_mug.mp4"
+                          type="video/mp4">
+                </video>
+            </div>
+
+      </div>
+    </div>
+    <!-- Comparsion -->
+
+    <div class="hr"></div>
+
+    
+
+   
+    
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <div class="columns is-centered"><p>
+            This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://xrenaa.github.io/look-outside-room/">Here</a>.
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
